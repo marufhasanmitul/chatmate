@@ -88,10 +88,13 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(
               height: 150,
             ),
-            const Text(
-              'Help?',
-              style: TextStyle(color: ColorAll.primaryColor, fontSize: 17),
-            ),
+            TextButton(
+              onPressed: () {},
+              child: const Text(
+                'Help?',
+                style: TextStyle(color: ColorAll.primaryColor, fontSize: 17),
+              ),
+            )
           ],
         ),
       )),
