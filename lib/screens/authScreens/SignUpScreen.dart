@@ -199,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.password),
+                        suffixIcon: const Icon(Icons.check_circle_outline),
                         suffixIconColor: ColorAll.primaryColor,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
