@@ -13,5 +13,5 @@ class ColorAll {
     800: const Color(0xFF1565C0),
     900: const Color(0xFF0D47A1),
   };
-  static const Color primaryColor = Color(0xFFB97E7E);
+  static const Color primaryColor = Color(0xFFFA8484);
 }

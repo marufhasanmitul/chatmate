@@ -1,7 +1,10 @@
 import 'package:chatmate/Utils/ScreenBackground.dart';
 import 'package:chatmate/Utils/assets.images.dart';
 import 'package:chatmate/Utils/colorAll.dart';
+import 'package:chatmate/screens/authScreens/LoginScreen.dart';
+import 'package:chatmate/screens/authScreens/helpPage.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -58,7 +61,9 @@ class _SplashScreenState extends State<SplashScreen> {
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         backgroundColor: ColorAll.primaryColor),
-                    onPressed: () {},
+                    onPressed: () {
+                      Get.to(const LoginScreen());
+                    },
                     child: const Text(
                       "Login with Email",
                       style: TextStyle(
@@ -89,7 +94,9 @@ class _SplashScreenState extends State<SplashScreen> {
               height: 150,
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Get.to(const HelpScreen());
+              },
               child: const Text(
                 'Help?',
                 style: TextStyle(color: ColorAll.primaryColor, fontSize: 17),
