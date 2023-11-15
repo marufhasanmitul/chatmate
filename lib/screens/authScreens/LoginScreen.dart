@@ -1,4 +1,5 @@
 import 'package:chatmate/Utils/colorAll.dart';
+import 'package:chatmate/screens/authScreens/SignUpScreen.dart';
 import 'package:chatmate/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -178,7 +179,9 @@ class _LoginScreenState extends State<LoginScreen> {
                   children: [
                     const Text("Don't have an account?"),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Get.to(const SignUpScreen());
+                      },
                       child: const Text("Sign Up",
                           style: TextStyle(
                               color: Colors.black,

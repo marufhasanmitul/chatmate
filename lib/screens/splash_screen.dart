@@ -2,6 +2,7 @@ import 'package:chatmate/Utils/ScreenBackground.dart';
 import 'package:chatmate/Utils/assets.images.dart';
 import 'package:chatmate/Utils/colorAll.dart';
 import 'package:chatmate/screens/authScreens/LoginScreen.dart';
+import 'package:chatmate/screens/authScreens/SignUpScreen.dart';
 import 'package:chatmate/screens/authScreens/helpPage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -82,7 +83,9 @@ class _SplashScreenState extends State<SplashScreen> {
                   style: TextStyle(color: Colors.white, fontSize: 17),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.to(const SignUpScreen());
+                  },
                   child: const Text(
                     'Sign Up',
                     style: TextStyle(color: Colors.white, fontSize: 17),
