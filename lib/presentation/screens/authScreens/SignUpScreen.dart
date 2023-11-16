@@ -14,10 +14,13 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final globalkey = GlobalKey<FormState>();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
-  final TextEditingController passwordController = TextEditingController();
-  final TextEditingController massageController = TextEditingController();
-
+  final TextEditingController phoneController = TextEditingController();
+  final TextEditingController passController = TextEditingController();
+  final TextEditingController conformpassController = TextEditingController();
+  bool pressIcon = true;
+  bool conformIcon = true;
   String? _validateEmail(value) {
     if (value!.isEmpty) {
       return 'Please enter an Email';
@@ -68,7 +71,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 child: Column(
                   children: [
                     TextFormField(
-                      controller: passwordController,
+                      controller: nameController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         suffixIcon: const Icon(Icons.person),
@@ -129,7 +132,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
-                      controller: passwordController,
+                      controller: phoneController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
                         suffixIcon: const Icon(Icons.phone),
@@ -163,10 +166,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
-                      controller: passwordController,
+                      controller: passController,
+                      obscureText: pressIcon,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.password),
+                        suffixIcon: InkWell(
+                            onTap: (){
+                              setState(() {
+                                pressIcon = !pressIcon;
+                              });
+                            },
+                            child:  Icon(pressIcon? Icons.visibility :Icons.visibility_off)
+                        ),
                         suffixIconColor: ColorAll.primaryColor,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -197,10 +208,18 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
-                      controller: passwordController,
+                      controller: conformpassController,
+                      obscureText: conformIcon,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        suffixIcon: const Icon(Icons.check_circle_outline),
+                        suffixIcon: InkWell(
+                            onTap: (){
+                              setState(() {
+                                conformIcon= !conformIcon;
+                              });
+                            },
+                            child:  Icon(conformIcon? Icons.visibility :Icons.visibility_off)
+                        ),
                         suffixIconColor: ColorAll.primaryColor,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),

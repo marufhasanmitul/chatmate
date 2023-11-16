@@ -1,4 +1,5 @@
 import 'package:chatmate/Utils/colorAll.dart';
+import 'package:chatmate/screens/HomePage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -16,7 +17,7 @@ class _LoginScreenState extends State<LoginScreen> {
   final globalkey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  bool pressIcon = true;
   String? _validateEmail(value) {
     if (value!.isEmpty) {
       return 'Please enter an Email';
@@ -29,7 +30,9 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   void _submitform() {
-    if (globalkey.currentState!.validate()) {}
+    if (globalkey.currentState!.validate()) {
+      Get.to(const HomePage());
+    }
   }
 
   @override
@@ -96,9 +99,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       TextFormField(
                         controller: passwordController,
+                        obscureText: pressIcon,
                         keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
-                          suffixIcon: const Icon(Icons.visibility_off_sharp),
+                          suffixIcon: InkWell(
+                            onTap: (){
+                              setState(() {
+                                pressIcon = !pressIcon;
+                              });
+                            },
+                              child:  Icon(pressIcon? Icons.visibility :Icons.visibility_off)
+                          ),
                           suffixIconColor: ColorAll.primaryColor,
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
