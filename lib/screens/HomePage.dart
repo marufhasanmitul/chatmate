@@ -117,7 +117,7 @@ class _HomePageState extends State<HomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(backgroundColor: ColorAll.primaryColor,onPressed: (){}, label:const Row(
         children: [
-          Image(image: AssetImage('assets/images/mass.png',),),
+          Icon(Icons.mail,color: Colors.black,),
           SizedBox(width: 5,),
           Text('Massage',style: TextStyle(color: Colors.black),),
         ],
