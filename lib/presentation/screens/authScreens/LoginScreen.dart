@@ -1,20 +1,21 @@
 import 'package:chatmate/Utils/colorAll.dart';
-import 'package:chatmate/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HelpScreen extends StatefulWidget {
-  const HelpScreen({super.key});
+import '../splash_screen.dart';
+import 'SignUpScreen.dart';
+
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<HelpScreen> createState() => _HelpScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _HelpScreenState extends State<HelpScreen> {
+class _LoginScreenState extends State<LoginScreen> {
   final globalkey = GlobalKey<FormState>();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final TextEditingController massageController = TextEditingController();
 
   String? _validateEmail(value) {
     if (value!.isEmpty) {
@@ -52,7 +53,7 @@ class _HelpScreenState extends State<HelpScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const Text(
-                  'Contact Us',
+                  'Login Account',
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 26,
@@ -66,38 +67,6 @@ class _HelpScreenState extends State<HelpScreen> {
                   child: Column(
                     children: [
                       TextFormField(
-                        controller: passwordController,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          suffixIcon: const Icon(Icons.person),
-                          suffixIconColor: ColorAll.primaryColor,
-                          enabledBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  const BorderSide(color: Colors.black)),
-                          focusedBorder: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: ColorAll.primaryColor)),
-                          floatingLabelBehavior: FloatingLabelBehavior.always,
-                          label: const Text(
-                            'Your Name',
-                            style: TextStyle(color: Colors.black, fontSize: 13),
-                          ),
-                          labelStyle: const TextStyle(
-                              fontSize: 60, fontWeight: FontWeight.bold),
-                        ),
-                        validator: (value) {
-                          if (value == null || value!.isEmpty) {
-                            return 'Please Enter your Name';
-                          }
-                          return null;
-                        },
-                      ),
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      TextFormField(
                           controller: emailController,
                           keyboardType: TextInputType.emailAddress,
                           decoration: InputDecoration(
@@ -107,12 +76,11 @@ class _HelpScreenState extends State<HelpScreen> {
                             suffixIconColor: ColorAll.primaryColor,
                             enabledBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
-                                borderSide:
-                                    const BorderSide(color: Colors.black)),
+                                borderSide: const BorderSide(color: Colors.black)),
                             focusedBorder: OutlineInputBorder(
                                 borderRadius: BorderRadius.circular(20),
-                                borderSide: const BorderSide(
-                                    color: ColorAll.primaryColor)),
+                                borderSide:
+                                    const BorderSide(color: ColorAll.primaryColor)),
                             floatingLabelBehavior: FloatingLabelBehavior.always,
                             label: const Text(
                               'Email',
@@ -120,36 +88,38 @@ class _HelpScreenState extends State<HelpScreen> {
                                   TextStyle(color: Colors.black, fontSize: 13),
                             ),
                             labelStyle: const TextStyle(
-                                fontSize: 60, fontWeight: FontWeight.bold),
+                                fontSize: 45, fontWeight: FontWeight.bold),
                           ),
                           validator: _validateEmail),
                       const SizedBox(
                         height: 25,
                       ),
                       TextFormField(
-                        maxLines: 5,
-                        controller: massageController,
+                        controller: passwordController,
                         keyboardType: TextInputType.visiblePassword,
                         decoration: InputDecoration(
+                          suffixIcon: const Icon(Icons.visibility_off_sharp),
+                          suffixIconColor: ColorAll.primaryColor,
                           enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
-                              borderSide:
-                                  const BorderSide(color: Colors.black)),
+                              borderSide: const BorderSide(color: Colors.black)),
                           focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
-                              borderSide: const BorderSide(
-                                  color: ColorAll.primaryColor)),
+                              borderSide:
+                                  const BorderSide(color: ColorAll.primaryColor)),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           label: const Text(
-                            'Your Massage',
+                            'Password',
                             style: TextStyle(color: Colors.black, fontSize: 13),
                           ),
                           labelStyle: const TextStyle(
-                              fontSize: 60, fontWeight: FontWeight.bold),
+                              fontSize: 45, fontWeight: FontWeight.bold),
                         ),
                         validator: (value) {
                           if (value == null || value!.isEmpty) {
-                            return 'Please Enter your Name';
+                            return 'Please Enter Password';
+                          } else if (value.length < 8) {
+                            return 'Please enter minimum 8 character';
                           }
                           return null;
                         },
@@ -158,7 +128,31 @@ class _HelpScreenState extends State<HelpScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 25,
+                  height: 10,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Row(
+                      children: [
+                        Icon(
+                          Icons.check_box,
+                          color: Colors.black,
+                        ),
+                        SizedBox(
+                          width: 8,
+                        ),
+                        Text('Save Password')
+                      ],
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text("Forget Password?",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500)),
+                    )
+                  ],
                 ),
                 const SizedBox(
                   height: 30,
@@ -171,12 +165,31 @@ class _HelpScreenState extends State<HelpScreen> {
                             backgroundColor: ColorAll.primaryColor),
                         onPressed: _submitform,
                         child: const Text(
-                          "Sand Massage",
+                          "Login Account",
                           style: TextStyle(
                               color: Colors.black87,
                               fontWeight: FontWeight.bold,
                               fontSize: 20),
                         ))),
+                const SizedBox(
+                  height: 20,
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Text("Don't have an account?"),
+                    TextButton(
+                      onPressed: () {
+                        Get.to(const SignUpScreen());
+                      },
+                      child: const Text("Sign Up",
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500)),
+                    )
+                  ],
+                )
               ],
             )),
       ),

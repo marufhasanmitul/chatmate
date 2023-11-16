@@ -1,8 +1,9 @@
 import 'package:chatmate/Utils/colorAll.dart';
-import 'package:chatmate/screens/authScreens/LoginScreen.dart';
-import 'package:chatmate/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import '../splash_screen.dart';
+import 'LoginScreen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
