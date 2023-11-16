@@ -14,4 +14,5 @@ class ColorAll {
     900: const Color(0xFF0D47A1),
   };
   static const Color primaryColor = Color(0xFFFA8484);
+  static const Color appBarColor = Color(0xCF131326);
 }
