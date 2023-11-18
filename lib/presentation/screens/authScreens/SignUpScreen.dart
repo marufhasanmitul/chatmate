@@ -1,7 +1,10 @@
 import 'package:chatmate/Utils/colorAll.dart';
+import 'package:chatmate/screens/HomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../state_holder/signup_state_holder.dart';
 import '../splash_screen.dart';
 import 'LoginScreen.dart';
 
@@ -19,7 +22,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController massageController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
-  final TextEditingController passController = TextEditingController();
   final TextEditingController confirmPassController = TextEditingController();
 
   String? _validateEmail(value) {
@@ -34,7 +36,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
   }
 
   void _submitform() {
-    if (globalkey.currentState!.validate()) {}
+    if (globalkey.currentState!.validate()) {
+      _signUp();
+    }
+  }
+
+  void _signUp()async{
+    String email=emailController.text.trim();
+    String password=passwordController.text.trim();
+    User? user = await Get.find<SignUpController>().signUpWithEmailAndPassWord(email, password);
+    if(user != null){
+      print("User is Successfully Created ");
+      Get.to(const HomePage());
+    }else{
+      print("Some Error");
+    }
   }
 
   @override
@@ -259,17 +275,24 @@ class _SignUpScreenState extends State<SignUpScreen> {
               SizedBox(
                   height: 50,
                   width: double.infinity,
-                  child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: ColorAll.primaryColor),
-                      onPressed: _submitform,
-                      child: const Text(
-                        "Create Account",
-                        style: TextStyle(
-                            color: Colors.black87,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 20),
-                      ))),
+                  child: GetBuilder<SignUpController>(
+                    builder: (controller) {
+                      if(controller.signUpProgress){
+                        return const Center(child: CircularProgressIndicator(),);
+                      }
+                      return ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: ColorAll.primaryColor),
+                          onPressed: _submitform,
+                          child: const Text(
+                            "Create Account",
+                            style: TextStyle(
+                                color: Colors.black87,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 20),
+                          ));
+                    }
+                  )),
               const SizedBox(
                 height: 15,
               ),
@@ -295,4 +318,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
+
+
+
+
+
 }
