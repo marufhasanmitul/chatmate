@@ -1,5 +1,7 @@
 import 'package:chatmate/Utils/colorAll.dart';
+import 'package:chatmate/presentation/state_holder/login_controller.dart';
 import 'package:chatmate/screens/HomePage.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -31,7 +33,21 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void _submitform() {
     if (globalkey.currentState!.validate()) {
-      Get.to(const HomePage());
+
+      _login();
+    }
+  }
+
+
+  void _login()async{
+    String email=emailController.text.trim();
+    String password=passwordController.text.trim();
+    User? user = await Get.find<LoginController>().loginInWithEmailAndPassWord(email, password);
+    if(user != null){
+      print("User is Successfully Created ");
+      Get.to(()=>const HomePage());
+    }else{
+      print("Some Error");
     }
   }
 
@@ -171,17 +187,24 @@ class _LoginScreenState extends State<LoginScreen> {
                 SizedBox(
                     height: 60,
                     width: double.infinity,
-                    child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                            backgroundColor: ColorAll.primaryColor),
-                        onPressed: _submitform,
-                        child: const Text(
-                          "Login Account",
-                          style: TextStyle(
-                              color: Colors.black87,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20),
-                        ))),
+                    child: GetBuilder<LoginController>(
+                      builder: (controller) {
+                        if(controller.loginProgress){
+                          return const Center(child: CircularProgressIndicator(),);
+                        }
+                        return ElevatedButton(
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: ColorAll.primaryColor),
+                            onPressed: _submitform,
+                            child: const Text(
+                              "Login Account",
+                              style: TextStyle(
+                                  color: Colors.black87,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 20),
+                            ));
+                      }
+                    )),
                 const SizedBox(
                   height: 20,
                 ),

@@ -47,7 +47,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
     User? user = await Get.find<SignUpController>().signUpWithEmailAndPassWord(email, password);
     if(user != null){
       print("User is Successfully Created ");
-      Get.to(const HomePage());
+      Get.to(()=>const HomePage());
     }else{
       print("Some Error");
     }
