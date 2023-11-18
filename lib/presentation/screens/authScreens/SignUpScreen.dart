@@ -14,13 +14,14 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final globalkey = GlobalKey<FormState>();
-  final TextEditingController nameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController massageController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passController = TextEditingController();
-  final TextEditingController conformpassController = TextEditingController();
-  bool pressIcon = true;
-  bool conformIcon = true;
+  final TextEditingController confirmPassController = TextEditingController();
+
   String? _validateEmail(value) {
     if (value!.isEmpty) {
       return 'Please enter an Email';
@@ -166,18 +167,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
-                      controller: passController,
-                      obscureText: pressIcon,
+                      controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        suffixIcon: InkWell(
-                            onTap: (){
-                              setState(() {
-                                pressIcon = !pressIcon;
-                              });
-                            },
-                            child:  Icon(pressIcon? Icons.visibility :Icons.visibility_off)
-                        ),
+                        suffixIcon: const Icon(Icons.password),
                         suffixIconColor: ColorAll.primaryColor,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
@@ -208,18 +201,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       height: 15,
                     ),
                     TextFormField(
-                      controller: conformpassController,
-                      obscureText: conformIcon,
+                      controller: passwordController,
                       keyboardType: TextInputType.visiblePassword,
                       decoration: InputDecoration(
-                        suffixIcon: InkWell(
-                            onTap: (){
-                              setState(() {
-                                conformIcon= !conformIcon;
-                              });
-                            },
-                            child:  Icon(conformIcon? Icons.visibility :Icons.visibility_off)
-                        ),
+                        suffixIcon: const Icon(Icons.check_circle_outline),
                         suffixIconColor: ColorAll.primaryColor,
                         enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),

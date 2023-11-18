@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.6
   firebase_core: ^2.15.1
   firebase_analytics: ^10.7.0
+  firebase_auth: ^4.14.0
 
 
 
